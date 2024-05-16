@@ -3,19 +3,19 @@
 
 ### 1. Terdapat tiga algoritma sorting yang umum digunakan yakni, Bubble Sort, Selection Sort, dan Merge Sort. Berikan penjelasan alur dari masing-masing algoritma tersebut, dan jelaskan runtime dari best case dan worst case masing-masing algoritma! 
 
-1. Bubble Sort
+##### Bubble Sort
 
-- Alur:
+###### Alur:
 1. Lakukan perulangan sebanyak n-1 kali, di mana n adalah jumlah elemen dalam array.
 2. Pada setiap perulangan, bandingkan setiap elemen dengan elemen di sebelahnya.
 3. Jika elemen pertama lebih besar dari elemen kedua, tukar posisinya.
 4. Lakukan hal ini hingga seluruh elemen terurut.
 
-- Runtime:
+###### Runtime:
 1. Best Case: ```O(n)``` => Terjadi ketika array sudah terurut, sehingga tidak ada pertukaran yang perlu dilakukan.
 2. Worst Case: ```O(n^2)``` => Terjadi ketika array terbalik, sehingga membutuhkan n-1 perulangan untuk mengurutkan semua elemen.
 
-2. Selection Sort
+##### Selection Sort
 
 - Alur:
 1. Temukan elemen terkecil dalam array.
@@ -26,7 +26,7 @@
 1. Best Case: ```O(n)``` => Terjadi ketika array sudah terurut, sehingga elemen terkecil mudah ditemukan pada setiap perulangan.
 2. Worst Case: ```O(n^2)``` => Terjadi ketika array teracak, sehingga membutuhkan n perulangan untuk menemukan elemen terkecil pada setiap iterasi.
 
-3. Merge Sort
+##### Merge Sort
 
 - Alur:
 1. Bagi array menjadi dua bagian secara rekursif.
