@@ -144,7 +144,7 @@ int main() {
 }
 ```
 #### Output :
-![alt text](image.png)
+![Screenshot 2024-05-16 202238](https://github.com/shafasyahii/Algoritma-dan-Struktur-Data/assets/162096931/ad3ef189-12a3-4c00-8e4f-9f1ee31ad0e3)
 
 Fungsi ```isAnagram``` mengambil dua parameter: ```str1``` dan ```str2```, yang merupakan dua buah string yang akan dicek apakah mereka adalah anagram atau tidak.
 
@@ -205,7 +205,7 @@ int main() {
 }
 ```
 #### Output :
-![alt text](image-1.png)
+![Screenshot 2024-05-16 204417](https://github.com/shafasyahii/Algoritma-dan-Struktur-Data/assets/162096931/707f6a97-e111-40c9-835b-5a058f908962)
 
 Fungsi utama program ini terletak pada fungsi ```mergeArrays```. Fungsi ini menerima lima buah parameter yaitu:
 
