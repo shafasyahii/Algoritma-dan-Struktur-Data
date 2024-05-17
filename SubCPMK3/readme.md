@@ -1,299 +1,103 @@
 # <h1 align="center">Tugas 2 CPMK 2 – SubCPMK 3 </h1>
 <p align="center">Shafa Syahida</p>
 
-### 1. Terdapat dua algoritma searching yang umum digunakan yakni, Binary Search dan Linear Search. Berikan penjelasan alur dari masing-masing algoritma tersebut, dan jelaskan runtime dari best case dan worst case masing-masing algoritma!  
+### 1. Terdapat dua algoritma searching yang umum digunakan yakni, Binary Search dan Linear Search. Berikan penjelasan alur dari masing-masing algoritma tersebut, dan jelaskan runtime dari best case dan worst case masing-masing algoritma!   
 
-1. Bubble Sort
+#### Binary Search
+Algoritma Binary Search hanya dapat digunakan pada kumpulan data yang sudah terurut. Algoritma ini bekerja dengan cara membagi kumpulan data menjadi dua bagian secara berulang, dan membuang setengah bagian yang tidak mungkin berisi nilai yang dicari. Proses ini diulang hingga nilai yang dicari ditemukan atau seluruh kumpulan data telah diperiksa.
 
-- Alur:
-1. Lakukan perulangan sebanyak n-1 kali, di mana n adalah jumlah elemen dalam array.
-2. Pada setiap perulangan, bandingkan setiap elemen dengan elemen di sebelahnya.
-3. Jika elemen pertama lebih besar dari elemen kedua, tukar posisinya.
-4. Lakukan hal ini hingga seluruh elemen terurut.
+##### Alur:
+1. Inisialisasi variabel ```low``` sebagai indeks elemen pertama dan ```high``` sebagai indeks elemen terakhir dalam kumpulan data.
+2. Lakukan loop while ```low``` lebih kecil dari atau sama dengan ```high```.
+- Hitung nilai tengah (mid) sebagai rata-rata low dan high.
+- Bandingkan nilai pada elemen ke-mid dengan nilai yang dicari.
+Jika sama, kembalikan nilai mid.
+Jika lebih kecil, ubah nilai high menjadi mid - 1 dan ulangi langkah 2.
+Jika lebih besar, ubah nilai low menjadi mid + 1 dan ulangi langkah 2.
+3. Jika loop selesai, nilai yang dicari tidak ditemukan, kembalikan nilai -1.
 
-- Runtime:
-1. Best Case: ```O(n)``` => Terjadi ketika array sudah terurut, sehingga tidak ada pertukaran yang perlu dilakukan.
-2. Worst Case: ```O(n^2)``` => Terjadi ketika array terbalik, sehingga membutuhkan n-1 perulangan untuk mengurutkan semua elemen.
+##### Runtime:
+- Best Case: ```O(1)``` => Jika nilai yang dicari ditemukan pada elemen tengah pada iterasi pertama.
+- Worst Case: ```O(log n)``` => Jika nilai yang dicari tidak ditemukan dan algoritma harus memeriksa setengah dari kumpulan data pada setiap iterasi.
 
-2. Selection Sort
+#### Linear Search
+Algoritma Linear Search bekerja dengan cara membandingkan nilai yang dicari dengan setiap elemen dalam kumpulan data secara berurutan. Jika nilai yang dicari ditemukan, maka posisinya dalam kumpulan data akan dikembalikan. Jika nilai yang dicari tidak ditemukan, maka algoritma akan mengembalikan nilai -1.
 
-- Alur:
-1. Temukan elemen terkecil dalam array.
-2. Tukar elemen terkecil dengan elemen pertama dalam array.
-3. Ulangi langkah 1 dan 2 untuk elemen berikutnya, hingga seluruh elemen terurut.
+##### Alur:
+1. Inisialisasi variabel ```i``` sebagai penunjuk ke elemen pertama dalam kumpulan data.
+2. Lakukan loop while ```i``` lebih kecil dari panjang kumpulan data.
+3. Bandingkan nilai pada elemen ke-```i``` dengan nilai yang dicari.
+Jika sama, kembalikan nilai i.
+Jika tidak sama, tingkatkan nilai i dan ulangi langkah 2.
+4. Jika loop selesai, nilai yang dicari tidak ditemukan, kembalikan nilai -1.
 
-- Runtime:
-1. Best Case: ```O(n)``` => Terjadi ketika array sudah terurut, sehingga elemen terkecil mudah ditemukan pada setiap perulangan.
-2. Worst Case: ```O(n^2)``` => Terjadi ketika array teracak, sehingga membutuhkan n perulangan untuk menemukan elemen terkecil pada setiap iterasi.
-
-3. Merge Sort
-
-- Alur:
-1. Bagi array menjadi dua bagian secara rekursif.
-2. Urutkan kedua bagian secara terpisah menggunakan Merge Sort.
-3. Gabungkan kedua bagian yang terurut menjadi satu array terurut.
-
-- Runtime:
-1. Best Case: ```O(n log n)``` => Terjadi ketika array terbagi secara merata pada setiap pembagian rekursif.
-2. Worst Case: ```O(n log n)``` => Terjadi ketika array selalu terbagi tidak merata pada setiap pembagian rekursif.
+##### Runtime:
+- Best Case: ```O(1)``` - Jika nilai yang dicari ditemukan pada elemen pertama dalam kumpulan data.
+- Worst Case: ```O(n)``` - Jika nilai yang dicari tidak ditemukan dan algoritma harus memeriksa semua elemen dalam kumpulan data.
 
 ##### Kesimpulan:
 
-- Bubble Sort: Algoritma ini sederhana dan mudah dipahami, namun memiliki runtime yang lambat untuk array besar.
-- Selection Sort: Algoritma ini lebih cepat daripada Bubble Sort untuk array besar, namun masih memiliki runtime yang lambat dibandingkan Merge Sort.
-- Merge Sort: Algoritma ini memiliki runtime yang paling efisien (O(n log n)) untuk semua kasus, namun implementasinya lebih kompleks.
+Algoritma Binary Search umumnya lebih efisien daripada Linear Search, terutama untuk kumpulan data yang besar. Namun, Binary Search hanya dapat digunakan pada kumpulan data yang sudah terurut. Linear Search dapat digunakan pada kumpulan data yang tidak terurut, tetapi akan kurang efisien untuk kumpulan data yang besar.
 
 ### 2. Buatlah fungsi dari salah satu algoritma searching pada soal nomor 1, dan berikan penjelasan pada program tersebut  
 
-
-### 3. Tulislah sebuah fungsi program dengan kondisi sebagai berikut: Terdapat sebuah sorted array of strings yang mana terdapat string kosong diantaranya, carilah lokasi/indeks dari kata yang dicari! 
-
-
-
-
-## Guided 
-
 ```C++
 #include <iostream>
+#include <algorithm>
+#include <string>
 
 using namespace std;
 
-const int maksimalQueue = 5;
-int front = 0;
-int back = 0;
+// Fungsi untuk melakukan binary search pada string
+int binarySearch(const string& kalimat, char huruf) {
+    int left = 0;
+    int right = kalimat.size() - 1;
 
-string queueTeller[5];
+    while (left <= right) {
+        int mid = left + (right - left) / 2;
 
-bool isFull() {
-    if (back == maksimalQueue) {
-        return true;
-    } else {
-        return false;
-    }
-}
-
-bool isEmpty() {
-    if (back == 0) {
-        return true;
-    } else {
-        return false;
-    }
-}
-
-void enqueueAntrian(string data) {
-    if (isFull()) {
-        cout << "Antrian Penuh" << endl;
-    } else {
-        if (isEmpty()) {
-            queueTeller[0] = data;
-            front++;
-            back++;
+        if (kalimat[mid] == huruf) {
+            return mid; // Huruf ditemukan pada indeks mid
+        } else if (kalimat[mid] < huruf) {
+            left = mid + 1; // Cari di bagian kanan
         } else {
-            queueTeller[back] = data;
-            back++;
+            right = mid - 1; // Cari di bagian kiri
         }
     }
-}
 
-void dequeueAntrian() {
-    if (isEmpty()) {
-        cout << "Antrian kosong" << endl;
-    } else {
-        for (int i = 0; i < back; i++) {
-            queueTeller[i] = queueTeller[i + 1];
-        }
-        back--;
-    }
-}
-
-int countQueue() {
-    return back;
-}
-
-void clearQueue() {
-    if (isEmpty()) {
-        cout << "Antrian kosong" << endl;
-    } else {
-        for (int i = 0; i < back; i++) {
-            queueTeller[i] = "";
-        }
-        back = 0;
-        front = 0;
-    }
-}
-
-void viewQueue() {
-    cout << "Data antrian teller: " << endl;
-    for (int i = 0; i < maksimalQueue; i++) {
-        if (queueTeller[i] != "") {
-            cout << i + 1 << ". " << queueTeller[i] << endl;
-        } else {
-            cout << i + 1 << ". (kosong)" << endl;
-        }
-    }
+    return -1; // Huruf tidak ditemukan
 }
 
 int main() {
-    enqueueAntrian("Andi");
-    enqueueAntrian("Maya");
-    viewQueue();
-    cout << "Jumlah antrian = " << countQueue() << endl;
-    dequeueAntrian();
-    viewQueue();
-    cout << "Jumlah antrian = " << countQueue() << endl;
-    clearQueue();
-    viewQueue();
-    cout << "Jumlah antrian = " << countQueue() << endl;
-    return 0;
-}
-```
-Kode ini digunakan untuk membuat simulasi antrian teller bank. Kode ini menggunakan array of string untuk menyimpan data antrian, dan beberapa fungsi untuk melakukan operasi pada antrian tersebut.
+    string kalimat;
+    char huruf;
 
-Berikut adalah fungsi-fungsi yang terdapat pada kode tersebut:
+    cout << "Masukkan kalimat atau huruf: ";
+    getline(cin, kalimat);
 
-isFull(): Fungsi ini digunakan untuk mengecek apakah antrian sudah penuh.
-isEmpty(): Fungsi ini digunakan untuk mengecek apakah antrian masih kosong.
-enqueueAntrian(string data): Fungsi ini digunakan untuk menambahkan data (nama nasabah) ke dalam antrian.
-dequeueAntrian(): Fungsi ini digunakan untuk mengeluarkan data (nama nasabah) dari antrian.
-countQueue(): Fungsi ini digunakan untuk menghitung jumlah data yang ada di dalam antrian.
-clearQueue(): Fungsi ini digunakan untuk menghapus semua data yang ada di dalam antrian.
-viewQueue(): Fungsi ini digunakan untuk menampilkan data yang ada di dalam antrian.
+    cout << "Masukkan huruf yang ingin dicari: ";
+    cin >> huruf;
 
-Pada fungsi main(), program terlebih dahulu menambahkan dua nama nasabah, yaitu "Andi" dan "Maya", ke dalam antrian. Kemudian, program menampilkan isi antrian dan jumlah antrian. Setelah itu, program mengeluarkan satu data dari antrian, lalu menampilkan kembali isi antrian dan jumlah antrian. Terakhir, program menghapus semua data yang ada di dalam antrian, dan kemudian menampilkan kembali isi antrian dan jumlah antrian.
+    // Ubah semua huruf menjadi lowercase untuk pencarian yang case-insensitive
+    transform(kalimat.begin(), kalimat.end(), kalimat.begin(), ::tolower);
 
-## Unguided
+    int hasil = binarySearch(kalimat, huruf);
 
-### 1. Ubahlah penerapan konsep queue pada bagian guided dari array menjadi linked list
-
-```C++
-#include <iostream>
-
-using namespace std;
-
-// Node structure for linked list implementation
-struct Node {
-    string data;
-    Node* next;
-};
-
-class Queue {
-public:
-    Queue() {
-        front = rear = nullptr;
+    if (hasil != -1) {
+        cout << "Huruf '" << huruf << "' ditemukan pada indeks ke-" << hasil << endl;
+    } else {
+        cout << "Huruf '" << huruf << "' tidak ditemukan dalam kalimat atau huruf yang diinput." << endl;
     }
-
-    bool isEmpty() {
-        return front == nullptr;
-    }
-
-    void enqueue(string data) {
-        Node* newNode = new Node();
-        newNode->data = data;
-        newNode->next = nullptr;
-
-        if (isEmpty()) {
-            front = rear = newNode;
-        } else {
-            rear->next = newNode;
-            rear = newNode;
-        }
-    }
-
-    void dequeue() {
-        if (isEmpty()) {
-            cout << "Antrian kosong" << endl;
-        } else {
-            Node* temp = front;
-            front = front->next;
-
-            if (front == nullptr) {
-                rear = nullptr;
-            }
-
-            delete temp;
-        }
-    }
-
-    int countQueue() {
-        int count = 0;
-        Node* current = front;
-
-        while (current != nullptr) {
-            count++;
-            current = current->next;
-        }
-
-        return count;
-    }
-
-    void clearQueue() {
-        Node* current = front;
-
-        while (current != nullptr) {
-            Node* temp = current;
-            current = current->next;
-            delete temp;
-        }
-
-        front = rear = nullptr;
-    }
-
-    void viewQueue() {
-        cout << "Data antrian teller: " << endl;
-        Node* current = front;
-
-        for (int i = 1; i <= 5; i++) {
-            if (current != nullptr) {
-                cout << i << ". " << current->data << endl;
-                current = current->next;
-            } else {
-                cout << i << ". (kosong)" << endl;
-            }
-        }
-    }
-
-private:
-    Node* front;
-    Node* rear;
-};
-
-int main() {
-    Queue queueTeller;
-
-    queueTeller.enqueue("Andi");
-    queueTeller.enqueue("Maya");
-    queueTeller.enqueue("Rina");
-    queueTeller.enqueue("Budi");
-    queueTeller.enqueue("Doni");
-    queueTeller.viewQueue();
-    cout << "Jumlah antrian = " << queueTeller.countQueue() << endl;
-    queueTeller.dequeue();
-    queueTeller.dequeue();
-    queueTeller.viewQueue();
-    cout << "Jumlah antrian = " << queueTeller.countQueue() << endl;
-    queueTeller.clearQueue();
-    queueTeller.viewQueue();
-    cout << "Jumlah antrian = " << queueTeller.countQueue() << endl;
 
     return 0;
 }
 ```
 #### Output:
-![image](https://github.com/shafasyahii/Praktikum-Struktur-Data-Assignment/assets/162096931/d5c8b1c3-93b7-4f74-85c9-1b3f1ff77d22)
+![image](https://github.com/shafasyahii/Praktikum-Struktur-Data-Assignment/assets/162096931/29f55d58-d38c-4192-9cdb-f6df23fbd639)
 
-Pada kode ini, struct Node digunakan untuk mendefinisikan struktur data node dalam linked list. Setiap node memiliki dua atribut: data untuk menyimpan data antrian (nama nasabah) dan next untuk menunjuk ke node berikutnya dalam antrian.
+Kode di atas digunakan untuk melakukan binary search pada string. Fungsi ```binarySearch``` menerima dua parameter yaitu ```kalimat``` yang berisi sebuah string dan ```huruf``` yang berisi sebuah karakter. Fungsi ini menggunakan algoritma binary search untuk mencari posisi karakter ```huruf``` dalam string ```kalimat```. Jika karakter ```huruf``` ditemukan, fungsi akan mengembalikan indeksnya. Jika karakter ```huruf``` tidak ditemukan, fungsi akan mengembalikan -1. Selama belum menemukan karakter yang dicarit, fungsi ini akan melakukan iterasi sampai batas kiri lebih besar dari batas kanan. Pada setiap iterasi, fungsi akan membagi data menjadi dua bagian dan memilih bagian tengah untuk dibandingkan dengan karakter yang ingin dicari. Jika karakter yang dicari lebih besar dari karakter pada indeks tengah, maka fungsi akan melakukan pencarian pada bagian kanan. Sebaliknya, jika karakter yang dicari lebih kecil dari karakter pada indeks tengah, maka fungsi akan melakukan pencarian pada bagian kiri. Proses ini akan terus dilakukan sampai karakter dicari ditemukan atau bagian data habis.
 
-Fungsi-fungsi untuk operasi queue (seperti enqueueAntrian(), dequeueAntrian(), countQueue(), clearQueue(), dan viewQueue()) telah dimodifikasi untuk bekerja dengan linked list.
-
-Perubahan utama pada kode ini adalah:
-
-Tipe data queue: Tipe data queue diubah dari array of string menjadi Node*.
-Operasi enqueue dan dequeue: Operasi enqueue dan dequeue dimodifikasi untuk menambahkan dan menghapus node dalam linked list.
-Operasi viewQueue: Operasi viewQueue dimodifikasi untuk menelusuri linked list dan menampilkan data pada setiap node.
-
-Dengan menggunakan linked list, queue dapat menampung data tanpa batasan maksimum dan lebih efisien dalam hal penggunaan memori, terutama ketika antrian bertambah panjang.
-
-### 2. Dari nomor 1 buatlah konsep antri dengan atribut Nama mahasiswa dan NIM Mahasiswa
+### 3. Tulislah sebuah fungsi program dengan kondisi sebagai berikut: Terdapat sebuah sorted array of strings yang mana terdapat string kosong diantaranya, carilah lokasi/indeks dari kata yang dicari! 
 
 ```C++
 #include <iostream>
@@ -301,123 +105,38 @@ Dengan menggunakan linked list, queue dapat menampung data tanpa batasan maksimu
 
 using namespace std;
 
-// Node structure for linked list implementation
-struct Node {
-    string NamaMahasiswa;
-    string NIMMahasiswa;
-    Node* next;
-};
-
-class Queue {
-public:
-    Queue() {
-        front = rear = nullptr;
+int findStringIndex(string arr[], int n, string target) {
+  for (int i = 0; i < n; i++) {
+    if (arr[i] == target) {
+      return i;
     }
-
-    bool isEmpty() {
-        return front == nullptr;
-    }
-
-    void enqueue(string NamaMahasiswa, string NIMMahasiswa) {
-        Node* newNode = new Node();
-        newNode->NamaMahasiswa = NamaMahasiswa;
-        newNode->NIMMahasiswa = NIMMahasiswa;
-        newNode->next = nullptr;
-
-        if (isEmpty()) {
-            front = rear = newNode;
-        } else {
-            rear->next = newNode;
-            rear = newNode;
-        }
-    }
-
-    void dequeue() {
-        if (isEmpty()) {
-            cout << "Antrian kosong" << endl;
-        } else {
-            Node* temp = front;
-            front = front->next;
-
-            if (front == nullptr) {
-                rear = nullptr;
-            }
-
-            delete temp;
-        }
-    }
-
-    int countQueue() {
-        int count = 0;
-        Node* current = front;
-
-        while (current != nullptr) {
-            count++;
-            current = current->next;
-        }
-
-        return count;
-    }
-
-    void clearQueue() {
-        Node* current = front;
-
-        while (current != nullptr) {
-            Node* temp = current;
-            current = current->next;
-            delete temp;
-        }
-
-        front = rear = nullptr;
-    }
-
-    void viewQueue() {
-        cout << "Data antrian teller: " << endl;
-        Node* current = front;
-
-        for (int i = 1; i <= 5; i++) {
-            if (current != nullptr) {
-                cout << i << ". Nama: " << current->NamaMahasiswa << ", NIM: " << current->NIMMahasiswa << endl;
-                current = current->next;
-            } else {
-                cout << i << ". (kosong)" << endl;
-            }
-        }
-    }
-
-private:
-    Node* front;
-    Node* rear;
-};
+  }
+  return -1; // jika tidak ditemukan
+}
 
 int main() {
-    Queue queueTeller;
+  string arr[] = {"Adi", "", "", "", "bermain", "", "bola", "", "", "sedang"};
+  int n = sizeof(arr) / sizeof(arr[0]);
+  string target = "bola";
 
-    queueTeller.enqueue("Andi", "12345678");
-    queueTeller.enqueue("Maya", "23456789");
-    queueTeller.enqueue("Rina", "34567890");
-    queueTeller.enqueue("Budi", "45678901");
-    queueTeller.enqueue("Doni", "56789012");
-    queueTeller.viewQueue();
-    cout << "Jumlah antrian = " << queueTeller.countQueue() << endl;
-    queueTeller.dequeue();
-    queueTeller.dequeue();
-    queueTeller.viewQueue();
-    cout << "Jumlah antrian = " << queueTeller.countQueue() << endl;
-    queueTeller.clearQueue();
-    queueTeller.viewQueue();
-    cout << "Jumlah antrian = " << queueTeller.countQueue() << endl;
+  int index = findStringIndex(arr, n, target);
 
-    return 0;
+  if (index != -1) {
+    cout << "Kata '" << target << "' ditemukan pada indeks " << index << endl;
+  } else {
+    cout << "Kata '" << target << "' tidak ditemukan" << endl;
+  }
+
+  return 0;
 }
 ```
 #### Output:
-![image](https://github.com/shafasyahii/Praktikum-Struktur-Data-Assignment/assets/162096931/72c1e47f-85ee-46c8-aa1b-5a658049f510)
 
-Perubahan utama pada kode ini adalah:
 
-Struktur data node: Struktur data node diperbarui untuk menyertakan dua atribut baru: namaMahasiswa dan nimMahasiswa.
-Operasi enqueue dan dequeue: Operasi enqueue dan dequeue dimodifikasi untuk memperbarui data namaMahasiswa dan nimMahasiswa pada node yang ditambahkan atau dihapus.
-Operasi viewQueue: Operasi viewQueue dimodifikasi untuk menampilkan data namaMahasiswa dan nimMahasiswa pada setiap node.
+Fungsi ```findStringIndex``` menerima tiga parameter: ```arr``` adalah array of strings, ```n``` adalah jumlah elemen dalam array, dan ```target``` adalah string yang ingin dicari.
 
-Dengan perubahan ini, antrian dapat menyimpan informasi yang lebih lengkap tentang mahasiswa, yaitu nama dan NIM mereka.
+Fungsi ini menggunakan loop untuk mengiterasi elemen-elemen dalam array. Pada setiap iterasi, fungsi membandingkan elemen array dengan ```target```. Jika elemen array sama dengan ```target```, maka fungsi mengembalikan indeks elemen tersebut.
+
+Jika tidak ditemukan, fungsi mengembalikan nilai ```-1```.
+
+Dalam main program, kita membuat array of strings ```arr``` dan mengisi nilai-nilai yang diberikan. Kemudian kita panggil fungsi ```findStringIndex``` dengan parameter ```arr```, ```n```, dan ```target```. Kemudian program akan menampilkan hasilnya pada konsol.
