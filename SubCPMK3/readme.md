@@ -131,7 +131,7 @@ int main() {
 }
 ```
 #### Output:
-
+![Screenshot 2024-05-17 112823](https://github.com/shafasyahii/Algoritma-dan-Struktur-Data/assets/162096931/fe50b3ff-6221-4495-af32-983c34972f35)
 
 Fungsi ```findStringIndex``` menerima tiga parameter: ```arr``` adalah array of strings, ```n``` adalah jumlah elemen dalam array, dan ```target``` adalah string yang ingin dicari.
 
