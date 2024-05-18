@@ -115,7 +115,7 @@ int main() {
 }
 ```
 #### Output:
-
+![Screenshot 2024-05-19 010352](https://github.com/shafasyahii/Algoritma-dan-Struktur-Data/assets/162096931/34c88e66-9ffb-429a-b08b-7195a42500e0)
 
 ### 2. Tulislah sebuah program untuk mensortir sebuah stack, sehingga item dengan nilai terkecil menjadi top pada stack tersebut! Diperbolehkan menggunakan tambahan temporary stack, namun tidak diperbolehkan untuk menyalin dari struktur data yang lain seperti array.  Program stack yang dibuat dapat menggunakan operasi stack seperti push, pop, peek, dan isEmpty.  
 
@@ -177,3 +177,4 @@ int main() {
 }
 ```
 #### Output:
+![Screenshot 2024-05-19 010648](https://github.com/shafasyahii/Algoritma-dan-Struktur-Data/assets/162096931/4ba86558-35f8-4c08-9f14-a247013a9432)
