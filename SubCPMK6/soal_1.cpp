@@ -1,9 +1,3 @@
-# <h1 align="center">Tugas 2 CPMK 2 – SubCPMK 6 </h1>
-<p align="center">Shafa Syahida</p>
-
-### 1. Tulislah sebuah program dari operasi stack seperti pop, push, isEmpty, isFull, dll(min 5)!   
-
-```C++
 #include <iostream>
 using namespace std;
 
@@ -113,67 +107,3 @@ int main() {
 
     return 0;
 }
-```
-#### Output:
-
-
-### 2. Tulislah sebuah program untuk mensortir sebuah stack, sehingga item dengan nilai terkecil menjadi top pada stack tersebut! Diperbolehkan menggunakan tambahan temporary stack, namun tidak diperbolehkan untuk menyalin dari struktur data yang lain seperti array.  Program stack yang dibuat dapat menggunakan operasi stack seperti push, pop, peek, dan isEmpty.  
-
-```C++
-#include <iostream>
-#include <stack>
-
-using namespace std;
-
-// Deklarasi fungsi untuk mengurutkan stack
-void sortStack(stack<int>& s) {
-  // Deklarasi stack sementara
-  stack<int> temp;
-
-  // Urutkan elemen stack
-  while (!s.empty()) {
-    // Ambil elemen teratas dari stack utama
-    int top = s.top();
-    s.pop();
-
-    // Masukkan elemen ke stack sementara dengan urutan yang benar
-    while (!temp.empty() && temp.top() > top) {
-      s.push(temp.top());
-      temp.pop();
-    }
-
-    // Masukkan elemen teratas dari stack utama ke stack sementara
-    temp.push(top);
-  }
-
-  // Pindahkan elemen dari stack sementara kembali ke stack utama
-  while (!temp.empty()) {
-    s.push(temp.top());
-    temp.pop();
-  }
-}
-
-int main() {
-  // Inisialisasi stack
-  stack<int> s;
-
-  // Masukkan elemen ke dalam stack
-  s.push(5);
-  s.push(2);
-  s.push(4);
-  s.push(1);
-  s.push(3);
-
-  // Urutkan stack
-  sortStack(s);
-
-  // Cetak elemen stack yang telah diurutkan
-  while (!s.empty()) {
-    cout << s.top() << " ";
-    s.pop();
-  }
-
-  return 0;
-}
-```
-#### Output:
