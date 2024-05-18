@@ -77,7 +77,7 @@ int main() {
 }
 ```
 #### Output:
-
+![Screenshot 2024-05-18 191927](https://github.com/shafasyahii/Algoritma-dan-Struktur-Data/assets/162096931/9892c9c1-3087-4ffd-852f-0897195f318a)
 
 Dalam program ini, fungsi ```removeDuplicates``` digunakan untuk menghilangkan duplikasi data pada linked list. Fungsi ini bekerja dengan cara mengikuti setiap node dalam linked list dan membandingkan data setiap node dengan data node berikutnya. Jika data node berikutnya sama dengan data node sebelumnya, maka node berikutnya dihapus. Fungsi ini dilakukan secara rekursif untuk setiap node dalam linked list. Fungsi ```printList``` digunakan untuk menampilkan linked list. Fungsi ini mengikuti setiap node dalam linked list dan mencetak data setiap node.
 
@@ -161,7 +161,7 @@ int main() {
 }
 ```
 #### Output:
-
+![Screenshot 2024-05-18 192151](https://github.com/shafasyahii/Algoritma-dan-Struktur-Data/assets/162096931/8fba10c7-186a-4aa8-a484-a4dd0cdb5b7b)
 
 Dalam program ini, fungsi ```deleteNode``` digunakan untuk menghapus node di tengah single linked list. Fungsi ini bekerja dengan cara mengikuti setiap node dalam linked list dan membandingkan data setiap node dengan nilai yang ingin dihapus. Jika data node sama dengan nilai yang ingin dihapus, maka node tersebut dihapus. Fungsi ini dilakukan secara rekursif untuk setiap node dalam linked list. Fungsi ```printList``` digunakan untuk menampilkan linked list. Fungsi ini mengikuti setiap node dalam linked list dan mencetak data setiap node.
 
@@ -247,11 +247,9 @@ int main() {
 }
 ```
 #### Output:
+![Screenshot 2024-05-18 193406](https://github.com/shafasyahii/Algoritma-dan-Struktur-Data/assets/162096931/7dd3bcfb-a88d-4a4b-b4ed-de668315be2c)
 
-
-Program di atas adalah program sederhana yang memeriksa apakah linked list yang diberikan adalah palindrom atau bukan. Palindrom adalah sebuah kata, frasa, angka, atau urutan karakter lain yang dibaca sama maju dan mundur, mengabaikan spasi, tanda baca, dan huruf besar.
-
-Program ini menggunakan struktur ```Node``` untuk menyimpan data dan pointer ke node berikutnya. Fungsi ```newNode``` digunakan untuk membuat node baru dengan data yang diberikan dan mengembalikan pointer ke node tersebut.
+Program di atas adalah program sederhana yang memeriksa apakah linked list yang diberikan adalah palindrom atau bukan. Palindrom adalah sebuah kata, frasa, angka, atau urutan karakter lain yang dibaca sama maju dan mundur, mengabaikan spasi, tanda baca, dan huruf besar. Program ini menggunakan struktur ```Node``` untuk menyimpan data dan pointer ke node berikutnya. Fungsi ```newNode``` digunakan untuk membuat node baru dengan data yang diberikan dan mengembalikan pointer ke node tersebut.
 
 Fungsi utama ```isPalindrome``` berfungsi untuk mengecek apakah linked list adalah palindrom. Fungsi ini bekerja dengan langkah-langkah berikut:
 - Menempatkan semua node linked list ke dalam stack.
