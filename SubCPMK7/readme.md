@@ -221,3 +221,5 @@ int main() {
   return 0;
 }
 ```
+#### Output:
+![Screenshot 2024-05-19 013208](https://github.com/shafasyahii/Algoritma-dan-Struktur-Data/assets/162096931/5f0dff4b-fc97-45b8-a09c-9d2e377b37bf)
