@@ -116,7 +116,7 @@ int main() {
 }
 ```
 #### Output:
-![image](https://github.com/shafasyahii/Praktikum-Struktur-Data-Assignment/assets/162096931/d5c8b1c3-93b7-4f74-85c9-1b3f1ff77d22)
+![image](https://github.com/shafasyahii/Algoritma-dan-Struktur-Data/assets/162096931/db9df6e7-ca5d-4cd7-ae3c-1817d551d852)
 
 ### 2. Sebuah selter hewan terlantar, yang mana hanya menerima kucing dan anjing, menerapkan konsep “first in, first out” dalam proses adopsi. Orang-orang yang hendak mengadopsi harus mengikuti aturan berikut: 1) mengadopsi hewan yang paling “tua” (berdasarkan waktu masuk ke selter) dan tidak dapat memilih kucing atau anjing; 2) memilih antara kucing atau anjing, namun akan menerima yang paling tua. Buatlah data struktur untuk mengimplementasikan kondisi tersebut, silahkan menggunakan beberapa operasi queue seperti enquee, dequeueAny, dequeueDog, dan dequeueCat.   
 
@@ -221,3 +221,5 @@ int main() {
   return 0;
 }
 ```
+#### Output:
+![Screenshot 2024-05-19 013208](https://github.com/shafasyahii/Algoritma-dan-Struktur-Data/assets/162096931/5f0dff4b-fc97-45b8-a09c-9d2e377b37bf)
