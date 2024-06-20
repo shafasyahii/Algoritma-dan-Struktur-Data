@@ -1,13 +1,13 @@
-# <h1 align="center">Laporan Praktikum Modul Hash Table</h1>
+# <h1 align="center">Hash Table</h1>
 <p align="center">Shafa Syahida</p>
 
-## Dasar Teori
+## Penjelasan
 
 ![Screenshot 2024-06-04 165113](https://github.com/shafasyahii/Praktikum-Struktur-Data-Assignment/assets/162096931/f0969902-2af4-4742-b998-55e3f9369093)
 
-Tabel hash adalah sebuah cara untuk menyimpan suatu data pada memori ke dalam baris-baris dan kolom-kolom sehingga membentuk tabel yang dapat diakses dengan cepat [1]. Setiap sel yang merupakan pertemuan antara baris dan kolom di dalam tabel hash dimana data diarsipkan disebut dengan slot [2]. Sebuah tabel hash dapat dibuat dari dua bagian, yaitu sebuah larik atau array dan sebuah fungsi untuk memetakan, yang disebut dengan fungsi hash atau hash function. Fungsi hash adalah pemetaan ke dalam larik sesuai dengan kunci-kunci yang diberikan, dengan kata lain fungsi hash mendistribusikan data yang dimasukkan oleh pengguna ke dalam tabel atau larik yang telah disediakan [3].
+Tabel hash merupakan metode penyimpanan data dalam memori yang tersusun dalam baris dan kolom, memungkinkan akses data yang cepat dan efisien [1]. Setiap kotak pada tabel hash yang dibentuk oleh perpotongan baris dan kolom, tempat data disimpan, disebut slot [2]. Tabel hash terdiri dari dua elemen utama yakni array dan fungsi hash. Fungsi hash memetakan kunci ke dalam array, sehingga fungsi hash mendistribusikan data pengguna secara merata ke dalam tabel yang disediakan [3].
 
-Algoritma Hash dapat melakukan proses tambah, hapus dan pencarian dalam waktu yang konstan [4]. Waktu konstan ini juga disebut sebagai kekompleksan waktu O(1). Teknik Hash merupakan suatu metode yang secara langsung mengakses data record dalam suatu tabel dengan melakukan penghitungan pada key yang menjadi alamat record pada tabel. Key merupakan suatu data yang unik dapat berupa nomor atau karakter string [5]. 
+Algoritma hash memungkinkan operasi penambahan, penghapusan, dan pencarian data dengan waktu yang konstan [4]. Algoritma hash memiliki waktu operasi yang konstan, atau dikenal dengan kompleksitas waktu O(1). Hal ini dicapai dengan teknik hash yang secara langsung mengakses data record dalam tabel berdasarkan perhitungan pada key yang menjadi alamat record tersebut. Key adalah data unik yang dapat berupa angka atau string karakter [5]. 
 
 Hash table menggunakan memori penyimpanan utama berbentuk array dengan tambahan algoritma untuk mempercepat pemrosesan data. Pada intinya hash table merupakan penyimpanan data menggunakan key value yang didapat dari nilai data itu sendiri. Dengan key value tersebut didapat hash value. Jadi hash function merupakan suatu fungsi sederhana untuk mendapatkan hash value dari key value suatu data. Yang perlu diperhatikan untuk membuat hash function adalah:
 
@@ -92,6 +92,79 @@ Pada saat terjadi collision, terdapat fungsi hash yang kedua untuk menentukan po
 Pada dasarnya separate chaining membuat tabel yang digunakan untuk proses hashing menjadi sebuah array of pointer yang masing-masing pointernya diikuti oleh sebuah linked list, dengan chain (mata rantai) 1 terletak pada array of pointer, sedangkan chain 2 dan seterusnya berhubungan dengan chain 1 secara memanjang.
 
 Kelemahan dari open hashing adalah bila data menumpuk pada satu/sedikit indeks sehingga terjadi linked list yang panjang.
+
+## Program
+```C++
+#include <iostream>
+#include <vector>
+#include <list>
+#include <string>
+#include <functional>
+
+using namespace std;
+
+class HashTable {
+    int size;
+    vector<list<pair<string, int>>> table;
+
+public:
+    HashTable(int s) {
+        size = s;
+        table.resize(s);
+    }
+
+    int hashFunction(string key) {
+        int hash = 0;
+        for (char c : key) {
+            hash += c;
+        }
+        return hash % size;
+    }
+
+    void insert(string key, int value) {
+        int index = hashFunction(key);
+        table[index].push_back({key, value});
+    }
+
+    void search(string key) {
+        int index = hashFunction(key);
+        for (auto& pair : table[index]) {
+            if (pair.first == key) {
+                cout << "Key found: " << pair.first << " Value: " << pair.second << endl;
+                return;
+            }
+        }
+        cout << "Key not found." << endl;
+    }
+};
+
+int main() {
+    HashTable h(5);
+
+    h.insert("apple", 5);
+    h.insert("banana", 7);
+    h.insert("orange", 3);
+
+    h.search("apple");
+    h.search("banana");
+    h.search("grape");
+
+    return 0;
+}
+```
+
+#### Penjelasan Alur Program
+1. HashTable Class:
+- Membuat kelas ```HashTable``` yang memiliki atribut ```size``` untuk ukuran hash table dan ```table``` untuk menyimpan data.
+- Konstruktor ```HashTable``` menginisialisasi ukuran hash table dan membuat list untuk setiap index.
+- Metode ```hashFunction``` untuk menghitung index hash berdasarkan key.
+- Metode ```insert``` untuk menambahkan data ke hash table.
+- Metode ```search``` untuk mencari data berdasarkan key.
+
+2. Main Program:
+- Membuat objek ```HashTable``` dengan ukuran 5.
+- Menambahkan beberapa data ke hash table menggunakan metode ```insert```.
+- Mencari beberapa data menggunakan metode ```search```.
 
 ## Referensi
 [1] Barnes & Noble, Hash Tables, *Sparknotes*, http://www.sparknotes.com/ cs/searching/hashtables/section1.html.
